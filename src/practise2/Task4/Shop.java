@@ -1,33 +1,27 @@
 package practise2.Task4;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 public class Shop {
     private List<Computer> computerList = new ArrayList<>();
 
-    public void addComputer(String serialNumber){
-        computerList.add(new Computer(serialNumber));
+    public void addComputer(Computer computer){
+        computerList.add(computer);
     }
 
-    public int searchComputer(String serialNumber){
-        for (int i = 0; i < computerList.size(); i++){
-            if (Objects.equals(computerList.get(i).getSerialNumber(), serialNumber)){
-                return i;
-            }
-        }
-        return -1;
+    public void removeComputer(Computer computer){
+        computerList.remove(computer);
     }
 
-    public void deleteComputer(String serialNumber){
-        int searchResult = searchComputer(serialNumber);
-        if(searchResult != -1){
-            computerList.remove(searchResult);
+    public Computer findComputer(String model){
+        for (Computer computer : computerList){
+            if(computer.getModel().equalsIgnoreCase(model))
+                return computer;
         }
-        else {
-            System.out.println("Этого компьютера нет в наличии!");
-        }
+        return null;
     }
 
     @Override

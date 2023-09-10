@@ -6,43 +6,23 @@ import java.util.Scanner;
 public class Tester {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in).useLocale(Locale.US);
-        while (true){
-            Shop shop = new Shop();
-            String serialNumber;
+        Shop shop = new Shop();
+        ComputerInput input = new KeyboardComputerInput();
 
-            System.out.println("Введите команду: ");
-            System.out.println("1 - Добавить компьютер в магазин.");
-            System.out.println("2 - Найти компьютер в магазиине.");
-            System.out.println("3 - Забрать компьютер из магазина.");
-            System.out.println("4 - Завершить работу программы.");
-
-            int command = in.nextInt();
-            switch (command){
-                case 1:
-                    System.out.println("Введите серийный номер компьютера: ");
-                    serialNumber = in.next();
-                    shop.addComputer(serialNumber);
-                    System.out.println("Состояние магазина: " + shop);
-                    break;
-                case 2:
-                    System.out.println("Введите серийный номер компьютера: ");
-                    serialNumber = in.next();
-                    int searchResult = shop.searchComputer(serialNumber);
-                    if (searchResult != -1){
-                        System.out.println("Компьютер в наличии в " + searchResult + " ячейке.");
-                    }
-                    else {
-                        System.out.println("Компьютера нет в наличии");
-                    }
-                    break;
-                case 3:
-                    System.out.println("Введите серийный номер компьютера: ");
-                    serialNumber = in.next();
-                    shop.deleteComputer(serialNumber);
-                    break;
-                case 4:
-                    break;
-            }
+        for(int i = 0; i < 3; i++){
+            Computer computer = input.inputComputer();
+            shop.addComputer(computer);
         }
+
+        System.out.println("Введите модель нужного вам компьютера: ");
+        String searchModel = in.nextLine();
+        Computer foundComputer = shop.findComputer(searchModel);
+
+        if(foundComputer != null)
+            System.out.println("Компьютер найден: " + foundComputer.toString());
+        else
+            System.out.println("Компьютер не найден!");
+
+        System.out.print("Состояние магазина: " + shop);
     }
 }

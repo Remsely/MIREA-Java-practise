@@ -1,19 +1,20 @@
 package practise2.Task4;
 
 public class Computer {
-    private String serialNumber;
-    public Computer(String serialNumber){
-        this.serialNumber = serialNumber;
+    private String model;
+
+    public Computer(String model){
+        this.model = model;
     }
 
-    public String getSerialNumber() {
-        return serialNumber;
+    public String getModel() {
+        return model;
     }
 
     @Override
     public String toString() {
         return "Computer{" +
-                "serialNumber='" + serialNumber + '\'' +
+                "model='" + model + '\'' +
                 '}';
     }
 }
