@@ -11,6 +11,11 @@ public class HowMany {
         String text = in.nextLine();
 
         String[] words = text.split(" ");
-        System.out.println("Кол-во слов в тексте: " + words.length);
+        int counter = 0;
+        for(String word : words){
+            if(!word.equals(""))
+                counter++;
+        }
+        System.out.println("Кол-во слов в тексте: " + counter);
     }
 }

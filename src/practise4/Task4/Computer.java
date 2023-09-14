@@ -1,10 +1,10 @@
 package practise4.Task4;
 
 public class Computer {
-    private ComputerBrand computerBrand;
-    private Processor processor;
-    private  Memory memory;
-    private Monitor monitor;
+    private final ComputerBrand computerBrand;
+    private final Processor processor;
+    private final Memory memory;
+    private final Monitor monitor;
 
     public Computer(ComputerBrand computerBrand, Processor processor, Memory memory, Monitor monitor){
         this.computerBrand = computerBrand;

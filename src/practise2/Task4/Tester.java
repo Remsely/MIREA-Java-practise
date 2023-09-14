@@ -18,11 +18,16 @@ public class Tester {
         String searchModel = in.nextLine();
         Computer foundComputer = shop.findComputer(searchModel);
 
-        if(foundComputer != null)
+        if(foundComputer != null){
             System.out.println("Компьютер найден: " + foundComputer.toString());
+            shop.removeComputer(foundComputer);
+        }
+
         else
             System.out.println("Компьютер не найден!");
 
         System.out.print("Состояние магазина: " + shop);
+
+
     }
 }
