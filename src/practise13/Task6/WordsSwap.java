@@ -14,7 +14,7 @@ public class WordsSwap {
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             while ((line = reader.readLine()) != null){
-                String[] wordArray = line.split(" "); //\s+
+                String[] wordArray = line.split("\\s+");
                 for (String word : wordArray){
                     if(!word.isEmpty())
                         words.add(word);
