@@ -12,7 +12,7 @@ public class Task4 {
         System.out.println("Введите год: ");
         int year = scanner.nextInt();
         System.out.println("Введите месяц: ");
-        int month = scanner.nextInt();
+        int month = scanner.nextInt() - 1;
         System.out.println("Введите день: ");
         int day = scanner.nextInt();
         System.out.println("Введите часы: ");
