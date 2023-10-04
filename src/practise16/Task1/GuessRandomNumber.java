@@ -32,7 +32,7 @@ public class GuessRandomNumber extends JFrame {
         setVisible(true);
     }
 
-    private void runAttempt(){
+    private void runAttempt() {
         int guess = Integer.parseInt(textField.getText());
         checkGuess(guess);
     }

@@ -7,6 +7,7 @@ public class EnterPassword extends JFrame {
     private final static String password = "348233083";
     private final static String login = "remsely";
     private final static String service = "Java";
+
     EnterPassword() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -57,7 +58,7 @@ public class EnterPassword extends JFrame {
             String service = serviceField.getText();
             String password = new String(passwordField.getPassword());
 
-            if(checkInput(service, login, password))
+            if (checkInput(service, login, password))
                 JOptionPane.showMessageDialog(this, "Вход выполнен!");
             else
                 JOptionPane.showMessageDialog(this, "Неверные входные данные!");
@@ -68,7 +69,7 @@ public class EnterPassword extends JFrame {
         setVisible(true);
     }
 
-    private boolean checkInput(String service, String login, String password){
+    private boolean checkInput(String service, String login, String password) {
         return service.equals(EnterPassword.service) &&
                 login.equals(EnterPassword.login) &&
                 password.equals(EnterPassword.password);
