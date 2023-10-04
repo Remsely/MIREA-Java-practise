@@ -23,13 +23,25 @@ public class CustomButton extends JButton {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                setBackground(new Color(20, 20, 20));
+                setBackground(new Color(16, 16, 16));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
                 setBackground(Color.black);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                setBackground(new Color(25, 25, 25));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                setBackground(new Color(16, 16, 16));
             }
         });
     }

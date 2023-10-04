@@ -1,4 +1,4 @@
-package practise12.Task1;
+package practise12;
 
 import java.awt.*;
 
