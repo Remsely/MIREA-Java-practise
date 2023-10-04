@@ -37,7 +37,7 @@ public class Calculator extends JFrame {
         textArea.setBackground(Color.black);
         textArea.setForeground(Color.white);
         textArea.setFont(new Font("Open Sans", Font.BOLD, 22));
-        textArea.enableInputMethods(false);
+        textArea.setEditable(false);
 
         button0 = new CustomButton("0");
         button1 = new CustomButton("1");
