@@ -10,7 +10,7 @@ public class CustomButton extends JButton {
         super(label);
         setContentAreaFilled(false);
         setOpaque(true);
-        setBackground(new Color(16, 16, 16));
+        setBackground(Color.black);
         setForeground(Color.white);
         setFocusPainted(false);
         setMargin(new Insets(10, 5, 5 ,10));
@@ -22,13 +22,13 @@ public class CustomButton extends JButton {
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
-                setBackground(new Color(27, 27, 27));
+                setBackground(new Color(20, 20, 20));
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
-                setBackground(new Color(16, 16, 16));
+                setBackground(Color.black);
             }
         });
     }

@@ -2,6 +2,7 @@ package practise15.Task4;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.EmptyStackException;
 
 public class Calculator extends JFrame {
     private final JTextArea textArea;
@@ -21,6 +22,10 @@ public class Calculator extends JFrame {
     private final JButton divisionButton;
     private final JButton resultButton;
     private final JButton pointButton;
+    private final JButton cancelButton;
+    private final JButton openParenthesisButton;
+    private final JButton closeParenthesisButton;
+    private final JButton backspaceButton;
     private final StringBuilder resultLine = new StringBuilder();
 
     public Calculator() {
@@ -46,14 +51,22 @@ public class Calculator extends JFrame {
         button9 = new CustomButton("9");
         additionButton = new CustomButton("+");
         subtractionButton = new CustomButton("-");
-        multiplicationButton = new CustomButton("*");
-        divisionButton = new CustomButton("/");
+        multiplicationButton = new CustomButton("×");
+        divisionButton = new CustomButton("÷");
         resultButton = new CustomButton("=");
         pointButton = new CustomButton(".");
-
+        openParenthesisButton = new CustomButton("(");
+        closeParenthesisButton = new CustomButton(")");
+        backspaceButton = new CustomButton("\uD83E\uDC14");
+        cancelButton = new CustomButton("C");
         setActionListeners();
 
-        JPanel panel = new JPanel(new GridLayout(4, 0));
+        JPanel panel = new JPanel(new GridLayout(5, 0));
+
+        panel.add(cancelButton);
+        panel.add(openParenthesisButton);
+        panel.add(closeParenthesisButton);
+        panel.add(backspaceButton);
 
         panel.add(button1);
         panel.add(button2);
@@ -99,6 +112,10 @@ public class Calculator extends JFrame {
         divisionButton.addActionListener(e -> runDivision());
         resultButton.addActionListener(e -> runResult());
         pointButton.addActionListener(e -> runPoint());
+        cancelButton.addActionListener(e -> runCancel());
+        openParenthesisButton.addActionListener(e -> runOpenParenthesis());
+        closeParenthesisButton.addActionListener(e -> runCloseParenthesis());
+        backspaceButton.addActionListener(e -> runBackspace());
     }
 
     private void run0() {
@@ -167,13 +184,46 @@ public class Calculator extends JFrame {
     }
 
     private void runMultiplication() {
-        textArea.append(" * ");
+        textArea.append(" × ");
         resultLine.append("*");
     }
 
     private void runDivision() {
-        textArea.append(" / ");
+        textArea.append(" ÷ ");
         resultLine.append("/");
+    }
+
+    private void runCancel() {
+        textArea.setText("");
+        resultLine.delete(0, resultLine.length());
+    }
+
+    private void runBackspace() {
+        if(!(resultLine.length() == 0)){
+            resultLine.delete(resultLine.length() - 1, resultLine.length());
+            String currentText = textArea.getText();
+            if (!currentText.isEmpty()){
+                char operationSymbol;
+                if(currentText.length() > 1){
+                    operationSymbol = currentText.charAt(currentText.length() - 2);
+                    if ((operationSymbol == '÷' || operationSymbol == '×' || operationSymbol == '-' || operationSymbol == '+'))
+                        textArea.setText(currentText.substring(0, currentText.length() - 3));
+                    else
+                        textArea.setText(currentText.substring(0, currentText.length() - 1));
+                } else
+                    textArea.setText("");
+            }
+        }
+    }
+
+    private void runOpenParenthesis(){
+        textArea.append("(");
+        resultLine.append("(");
+    }
+
+    private void runCloseParenthesis(){
+        textArea.append(")");
+        resultLine.append(")");
     }
 
     private void runResult() {
@@ -182,7 +232,7 @@ public class Calculator extends JFrame {
             textArea.setText("= " + inputOperator.getResult());
             resultLine.delete(0, resultLine.length());
             resultLine.append(inputOperator.getResult());
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | EmptyStackException | IndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Ошибка: введены некорректные данные!");
             textArea.setText("");
             resultLine.delete(0, resultLine.length());
