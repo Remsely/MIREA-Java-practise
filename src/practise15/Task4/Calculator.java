@@ -38,6 +38,8 @@ public class Calculator extends JFrame {
         textArea.setForeground(Color.white);
         textArea.setFont(new Font("Open Sans", Font.BOLD, 22));
         textArea.setEditable(false);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
 
         button0 = new CustomButton("0");
         button1 = new CustomButton("1");
@@ -59,6 +61,7 @@ public class Calculator extends JFrame {
         closeParenthesisButton = new CustomButton(")");
         backspaceButton = new CustomButton("\uD83E\uDC14");
         cancelButton = new CustomButton("C");
+
         setActionListeners();
 
         JPanel panel = new JPanel(new GridLayout(5, 0));
@@ -89,9 +92,14 @@ public class Calculator extends JFrame {
         panel.add(additionButton);
 
         add(panel, BorderLayout.SOUTH);
-        add(new JScrollPane(textArea), BorderLayout.CENTER);
+
+        JScrollPane textAreaScrollPane = new JScrollPane(textArea);
+        textAreaScrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+
+        add(textAreaScrollPane, BorderLayout.CENTER);
 
         setMinimumSize(new Dimension(300, 300));
+
         setVisible(true);
     }
 
@@ -199,35 +207,36 @@ public class Calculator extends JFrame {
     }
 
     private void runBackspace() {
-        if(!(resultLine.length() == 0)){
+        if (!(resultLine.length() == 0)) {
             resultLine.delete(resultLine.length() - 1, resultLine.length());
+
             String currentText = textArea.getText();
-            if (!currentText.isEmpty()){
-                char operationSymbol;
-                if(currentText.length() > 1){
-                    operationSymbol = currentText.charAt(currentText.length() - 2);
+            if (!currentText.isEmpty()) {
+                if (currentText.length() > 1) {
+                    char operationSymbol = currentText.charAt(currentText.length() - 2);
                     if ((operationSymbol == '÷' || operationSymbol == '×' || operationSymbol == '-' || operationSymbol == '+'))
                         textArea.setText(currentText.substring(0, currentText.length() - 3));
                     else
                         textArea.setText(currentText.substring(0, currentText.length() - 1));
-                } else
+                } else {
                     textArea.setText("");
+                }
             }
         }
     }
 
-    private void runOpenParenthesis(){
+    private void runOpenParenthesis() {
         textArea.append("(");
         resultLine.append("(");
     }
 
-    private void runCloseParenthesis(){
+    private void runCloseParenthesis() {
         textArea.append(")");
         resultLine.append(")");
     }
 
     private void runResult() {
-        try{
+        try {
             InputOperator inputOperator = new InputOperator(resultLine.toString());
             textArea.setText("= " + inputOperator.getResult());
             resultLine.delete(0, resultLine.length());

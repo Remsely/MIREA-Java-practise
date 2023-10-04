@@ -8,12 +8,13 @@ import java.awt.event.MouseEvent;
 public class CustomButton extends JButton {
     public CustomButton(String label) {
         super(label);
+
         setContentAreaFilled(false);
         setOpaque(true);
         setBackground(Color.black);
         setForeground(Color.white);
         setFocusPainted(false);
-        setMargin(new Insets(10, 5, 5 ,10));
+        setMargin(new Insets(10, 5, 5, 10));
         setFont(new Font("Open Sans", Font.BOLD, 22));
         setPreferredSize(new Dimension(80, 40));
         setBorderPainted(false);
