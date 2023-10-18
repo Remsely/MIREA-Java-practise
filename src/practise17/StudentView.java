@@ -48,12 +48,12 @@ public class StudentView {
         return rollNoField.getText();
     }
 
-    public void setName(String name) {
-        nameField.setText(name);
-    }
-
     public String getName() {
         return nameField.getText();
+    }
+
+    public void setName(String name) {
+        nameField.setText(name);
     }
 
     public void setAdditionalInfo(String info) {
