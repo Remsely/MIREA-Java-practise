@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class RPNCalculator {
-    public static double evaluateRPN(String expression) {
+    private static double evaluateRPN(String expression) {
         Stack<Double> stack = new Stack<>();
         String[] tokens = expression.split("\\s+");
 
