@@ -21,7 +21,7 @@ public class RPNCalculator {
             }
         }
 
-        if (stack.size() != 1) throw new IllegalArgumentException("Invalid RPn expression");
+        if (stack.size() != 1) throw new IllegalArgumentException("Invalid RPN expression");
 
         return stack.pop();
     }
