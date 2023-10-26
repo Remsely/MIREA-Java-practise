@@ -1,7 +1,5 @@
 package practise23;
 
-import java.util.Queue;
-
 public class ArrayQueue<T> extends AbstractQueue<T> {
     private Object[] elements = new Object[10];
     private int head = 0;
